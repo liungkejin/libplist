@@ -23,7 +23,7 @@ Some key features are:
 
 ### Windows
 
-First install ![MSYS2](https://www.msys2.org/).
+First install [MSYS2](https://www.msys2.org/).
 
 Then open MSYS2 MINGW32 (or MSYS2 MINGW64 if your want to build for x64).
 
