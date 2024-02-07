@@ -21,6 +21,64 @@ Some key features are:
 
 ## Installation / Getting started
 
+### Windows
+
+First install ![MSYS2](https://www.msys2.org/).
+
+Then open MSYS2 MINGW32 (or MSYS2 MINGW64 if your want to build for x64).
+
+Install all required dependencies and build tools
+
+```shell
+# for x86
+pacman -S mingw-w64-i686-toolchain 
+pacman -S --needed base-devel msys2-devel
+pacman -S git mingw-w64-i686-cython0 mingw-w64-i686-libzip
+pacman -S make automake autoconf libtool pkgconf openssl openssl-devel
+```
+
+Then clone the actual project repository:
+```shell
+git clone https://github.com/liungkejin/libplist.git
+cd libplist
+```
+
+Now you can build and install it:
+```shell
+./autogen.sh
+make
+make install
+```
+
+If you require a custom prefix or other option being passed to `./configure`
+you can pass them directly to `./autogen.sh` like this:
+```bash
+./autogen.sh --prefix=/opt/local
+make
+make install
+```
+
+You can find the dll file in `%MSYS2 INSTALL PATH%\mingw32\bin`
+If you want use this dll in Visual Studio C++ Project, you need use `pexports.exe`
+to generate .lib file
+
+```shell
+pexports.exe -v libxxx.dll > libxxx.def
+```
+
+Then open `x86 Native Tools Command Prompt` or `x64 Native Tools Command Prompt`
+
+run
+```shell
+lib /DEF:libxxx.def
+```
+
+Then you can use this libxxx.lib file in C++ project
+
+```c++
+#pragma comment(lib, "libxxx.lib")
+```
+
 ### Debian / Ubuntu Linux
 
 First install all required dependencies and build tools:
